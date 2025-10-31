@@ -1,62 +1,90 @@
 import streamlit as st
 from PIL import Image
 
-st.title(" Mi Primera App de jacobo!!")
+# --- Configuración de la página ---
+st.set_page_config(
+    page_title="Mi Primera App Multimodal | Jacobo Castro",
+    page_icon="🧠",
+    layout="centered"
+)
 
-st.header("En este espacio comienzo a desarrollar mis aplicaciones para interfaces multimodales.")
-st.write("Facilmente puedo realizar backend y frontend.")
+# --- Encabezado principal ---
+st.markdown("""
+<h1 style='text-align: center; color: #4ECDC4;'>🚀 Mi Primera App Multimodal</h1>
+<h3 style='text-align: center; color: #888;'>Desarrollada por <b>Jacobo Castro</b></h3>
+<p style='text-align: center; color: #555; font-size:18px;'>
+Explorando el mundo de las <b>interfaces multimodales</b> — combinando lo visual, auditivo y táctil para mejorar la interacción humano-computador.
+</p>
+<hr style='border: 1px solid #ccc;'>
+""", unsafe_allow_html=True)
+
+# --- Imagen principal ---
 image = Image.open('Interfaces Mult2.png')
+st.image(image, caption='Interfaces multimodales', use_container_width=True)
 
-st.image(image, caption='Interfaces multimodales')
+# --- Texto de entrada ---
+st.markdown("### ✍️ Escribe algo:")
+texto = st.text_input('Introduce tu texto aquí:', 'Este es mi texto')
+st.write('📘 El texto escrito es:', texto)
 
-
-texto = st.text_input('Escribe algo', 'Este es mi texto')
-st.write('El texto escrito es', texto)
-
-st.subheader("Ahora usemos 2 Columnas")
+# --- Sección de columnas ---
+st.markdown("## 🧩 Dos Modalidades, Dos Columnas")
 
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Esta es la primera columna")
-    st.write("Las interfaces multimodales mejoran la experiencia de usuario")
+    st.subheader("🧠 Primera Columna")
+    st.write("Las interfaces multimodales mejoran la experiencia de usuario al combinar distintos sentidos.")
     resp = st.checkbox('Estoy de acuerdo')
     if resp:
-       st.write('Correcto!')
-  
-with col2:
-    st.subheader("Esta es la segunda columna")
-    modo = st.radio("Que Modalidad es la principal en tu interfaz", ('Visual', 'auditiva', 'Táctil'))
-    if modo == 'Visual':
-       st.write('La vista es fundamental para tu interfaz')
-    if modo == 'auditiva':
-       st.write('La audición es fundamental para tu interfaz')
-    if modo == 'Táctil':
-       st.write('El tacto es fundamental para tu interfaz')
-        
-st.subheader("Uso de Botones")
-if st.button('Presiona el botón'):
-    st.write('Gracias por presionar')
-else:
-    st.write('No has presionado aún')
+        st.success('✅ ¡Correcto! Las interfaces multimodales crean experiencias más naturales.')
 
-st.subheader("Selectbox")
+with col2:
+    st.subheader("🔊 Segunda Columna")
+    modo = st.radio("Selecciona la modalidad principal en tu interfaz:", ('Visual', 'Auditiva', 'Táctil'))
+    if modo == 'Visual':
+        st.info('👁️ La vista es fundamental para tu interfaz.')
+    elif modo == 'Auditiva':
+        st.info('🎧 La audición es fundamental para tu interfaz.')
+    elif modo == 'Táctil':
+        st.info('✋ El tacto es fundamental para tu interfaz.')
+
+# --- Botón interactivo ---
+st.markdown("## 🕹️ Interacción con botones")
+if st.button('Presiona el botón'):
+    st.success('🎉 ¡Gracias por presionar el botón!')
+else:
+    st.warning('⏳ Aún no has presionado el botón.')
+
+# --- Selectbox ---
+st.markdown("## 🎛️ Selecciona la modalidad de interacción")
 in_mod = st.selectbox(
-    "Selecciona la modalidad",
+    "Selecciona una modalidad:",
     ("Audio", "Visual", "Háptico"),
 )
+
 if in_mod == "Audio":
-    set_mod = "Reproducir audio"
+    set_mod = "🔊 Reproducir audio"
 elif in_mod == "Visual":
-    set_mod = "Reproducir video"
+    set_mod = "🎬 Reproducir video"
 elif in_mod == "Háptico":
-    set_mod = "Activar vibración"
-st.write(" La acción es:" , set_mod)
+    set_mod = "💫 Activar vibración"
 
+st.success(f"La acción seleccionada es: {set_mod}")
 
+# --- Barra lateral ---
 with st.sidebar:
-    st.subheader("Configura la modalidad")
+    st.header("⚙️ Configuración de Modalidad")
     mod_radio = st.radio(
-        "Escoge la modalidad a usar",
-        ("Visual", "Auditiva","Háptica")
+        "Escoge la modalidad a usar:",
+        ("Visual", "Auditiva", "Háptica")
     )
+    st.caption("💡 Usa esta sección para configurar el tipo de interacción multimodal.")
+
+# --- Pie de página ---
+st.markdown("""
+<hr style='border: 1px solid #ccc;'>
+<p style='text-align: center; color: #999; font-size: 14px;'>
+Desarrollado con ❤️ por <b>Jacobo Castro</b> — Proyecto de Interfaces Multimodales.
+</p>
+""", unsafe_allow_html=True)
