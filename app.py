@@ -19,7 +19,7 @@ Explorando el mundo de las <b>interfaces multimodales</b> — combinando lo visu
 """, unsafe_allow_html=True)
 
 # --- Imagen principal ---
-image = Image.open('Interfaces Mult2.png')
+image = Image.open('intro.png')
 st.image(image, caption='Interfaces multimodales', use_container_width=True)
 
 # --- Texto de entrada ---
